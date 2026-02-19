@@ -1243,6 +1243,16 @@
     line-height: 1.1;
 }
 
+.result-number.counted {
+    animation: resultPop 0.5s ease;
+}
+
+@keyframes resultPop {
+    0% { transform: scale(0.6); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 .result-label {
     font-size: 0.52em;
     font-weight: 600;

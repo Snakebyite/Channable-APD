@@ -135,6 +135,15 @@ Reveal.initialize({
         });
     }
 
+    // ── Count-Up for Result Numbers (inside fragments) ──
+    Reveal.on('fragmentshown', event => {
+        const frag = event.fragment;
+        const results = frag.querySelectorAll('.result-number');
+        results.forEach((el, i) => {
+            setTimeout(() => countUp(el), 200 + i * 300);
+        });
+    });
+
     // ── Hook into Reveal Events ────────────────────────
     Reveal.on('slidechanged', event => {
         const slide = event.currentSlide;
