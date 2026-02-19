@@ -1,0 +1,11 @@
+# Private / client-sensitive files
+Kontext/
+Präsentation/
+
+# Analysis docs (not needed for deployment)
+Presentation-*.md
+Run-This-*.md
+
+# OS files
+.DS_Store
+.cursor/
