@@ -98,6 +98,61 @@
             margin-right: auto;
         }
 
+        /* ---- Key Concepts Box ---- */
+
+        .concepts-box {
+            background: rgba(77, 232, 176, 0.06);
+            border: 1px solid rgba(77, 232, 176, 0.25);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .concepts-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--kfl-green-accent);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 500px) {
+            .concepts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .concept {
+            text-align: left;
+        }
+
+        .concept-icon {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .concept h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--kfl-white);
+            margin-bottom: 0.25rem;
+        }
+
+        .concept p {
+            font-size: 0.75rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+        }
+
         /* ---- Tool Cards ---- */
 
         .tool-card {
@@ -218,6 +273,32 @@
 
         .tool-link-arrow {
             font-size: 0.9em;
+        }
+
+        /* ---- Example Box ---- */
+
+        .example-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--kfl-green-accent);
+            border-radius: 0 8px 8px 0;
+            padding: 0.65rem 0.9rem;
+            margin: 0.75rem 0 0.6rem;
+        }
+
+        .example-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--kfl-green-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .example-text {
+            font-size: 0.75rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+            font-style: italic;
         }
 
         /* ---- Referral Note ---- */
@@ -371,6 +452,22 @@
             These are the tools that power our workflows — from AI copywriting and automation to data management and deployment. No fluff, just what we actually use and why.
         </p>
 
+        <div class="concepts-box">
+            <p class="concepts-title">Two ideas that matter more than any tool</p>
+            <div class="concepts-grid">
+                <div class="concept">
+                    <span class="concept-icon">🧱</span>
+                    <h3>Context Engineering</h3>
+                    <p>AI output is only as good as the input you give it. The real skill isn't prompting — it's collecting, structuring, and maintaining the right context: keywords, product data, brand voice, guidelines. Build that once, and every AI tool you use gets dramatically better.</p>
+                </div>
+                <div class="concept">
+                    <span class="concept-icon">🔗</span>
+                    <h3>Systems Thinking</h3>
+                    <p>Individual tools will keep getting easier. The lasting advantage isn't mastering one tool — it's orchestrating multiple tools into a pipeline that works end-to-end. Think less "which AI is best" and more "how do I connect them into a system that scales."</p>
+                </div>
+            </div>
+        </div>
+
         <!-- ======== TOOL 1: Claude ======== -->
 
         <div class="tool-card">
@@ -472,6 +569,10 @@
                 <p class="tool-section-label">Why it's valuable</p>
                 <p>Make is the glue between all your tools. Instead of manually copying data around, you build a workflow once — and it runs. Especially powerful with built-in LLM modules: workflows become not just automated, but intelligent.</p>
             </div>
+            <div class="example-box">
+                <p class="example-label">Example workflow we actually run</p>
+                <p class="example-text">New row in Airtable → Make fetches product data + keywords → sends it to Claude to generate optimized listing copy → writes the result back to Airtable → pushes it into the Channable supplementary feed. One click, entire catalog.</p>
+            </div>
             <div class="tool-section">
                 <p class="tool-section-label">Alternative</p>
                 <p>n8n — open-source, self-hostable. More flexible in some areas, less polished in others. A solid equivalent.</p>
@@ -521,7 +622,7 @@
                 </div>
             </div>
             <p class="tool-desc">
-                Cursor is an AI code editor — think Claude Projects on steroids. It works on a folder and repository structure and autonomously searches for the context it needs. Originally a coding tool, but equally powerful for complex non-code projects with large amounts of context.
+                Think of Cursor as the next step after Claude Projects — you give it an entire folder of files (data, documents, code, anything) and it works across all of them at once. It finds the context it needs by itself. Originally built for coding, but just as powerful for complex non-code projects where you're dealing with lots of information.
             </p>
             <div class="subtool-grid" style="margin-top: 0.5rem;">
                 <div class="subtool">
@@ -530,7 +631,7 @@
                 </div>
                 <div class="subtool">
                     <h4>GitHub</h4>
-                    <p>Cloud infrastructure & version control. Enables parallel teamwork, automated context pushing via API (e.g. through Make), and everything is versioned and traceable.</p>
+                    <p>Think of it as Google Drive for projects — your team can work in parallel, files are automatically backed up, and tools like Make can push data into it without manual uploads.</p>
                 </div>
             </div>
             <div class="tool-section" style="margin-top: 0.75rem;">
@@ -545,6 +646,10 @@
             <div class="tool-section">
                 <p class="tool-section-label">Why it's valuable</p>
                 <p>If Claude Projects is the starting point, Cursor + GitHub is the level-up. More context, more control, more possibilities. With GitHub as the cloud layer, everything becomes collaborative and automatable — files and context can be pushed into repos directly via Make.</p>
+            </div>
+            <div class="example-box">
+                <p class="example-label">Real example</p>
+                <p class="example-text">This entire presentation — design, code, copy — was built in Cursor. We gave it our voice notes, brand guidelines, and case study data as context. It generated everything from slide structure to CSS animations. Total time: 6 hours.</p>
             </div>
 
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
