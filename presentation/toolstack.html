@@ -189,8 +189,6 @@
         }
 
         .tool-icon {
-            font-size: 1.8rem;
-            line-height: 1;
             flex-shrink: 0;
             width: 48px;
             height: 48px;
@@ -199,6 +197,23 @@
             justify-content: center;
             background: rgba(77, 232, 176, 0.08);
             border-radius: 12px;
+            padding: 10px;
+        }
+
+        .tool-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 4px rgba(77, 232, 176, 0.1));
+        }
+
+        .tool-icon-duo {
+            gap: 4px;
+        }
+
+        .tool-icon-duo img {
+            width: 45%;
+            height: 45%;
         }
 
         .tool-name {
@@ -485,7 +500,7 @@
 
         <div class="tool-card">
             <div class="tool-header">
-                <div class="tool-icon">🧠</div>
+                <div class="tool-icon"><img src="img/claude-logo.svg" alt="Claude"></div>
                 <div>
                     <div class="tool-name">Claude</div>
                     <div class="tool-type">AI / Large Language Model</div>
@@ -527,7 +542,7 @@
 
         <div class="tool-card">
             <div class="tool-header">
-                <div class="tool-icon">🎙️</div>
+                <div class="tool-icon"><img src="img/wispr-logo.svg" alt="Wispr Flow"></div>
                 <div>
                     <div class="tool-name">Wispr Flow</div>
                     <div class="tool-type">Voice-to-Text / Dictation</div>
@@ -560,7 +575,7 @@
 
         <div class="tool-card">
             <div class="tool-header">
-                <div class="tool-icon">⚡</div>
+                <div class="tool-icon"><img src="img/make-logo.svg" alt="Make"></div>
                 <div>
                     <div class="tool-name">Make.com</div>
                     <div class="tool-type">Workflow Automation</div>
@@ -598,7 +613,7 @@
 
         <div class="tool-card">
             <div class="tool-header">
-                <div class="tool-icon">📦</div>
+                <div class="tool-icon"><img src="img/airtable-logo.svg" alt="Airtable"></div>
                 <div>
                     <div class="tool-name">Airtable</div>
                     <div class="tool-type">Database / Agency Operating System</div>
@@ -628,7 +643,7 @@
 
         <div class="tool-card">
             <div class="tool-header">
-                <div class="tool-icon">💻</div>
+                <div class="tool-icon tool-icon-duo"><img src="img/cursor-logo.svg" alt="Cursor"><img src="img/github-logo.svg" alt="GitHub"></div>
                 <div>
                     <div class="tool-name">Cursor + GitHub</div>
                     <div class="tool-type">AI Coding & Project Infrastructure</div>
