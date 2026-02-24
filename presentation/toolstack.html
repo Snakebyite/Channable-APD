@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFL Tool Stack — The Tools We Use Every Day</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --kfl-green-dark: #265347;
+            --kfl-green-deep: #1a3f35;
+            --kfl-green-accent: #4DE8B0;
+            --kfl-white: #FFFFFF;
+            --kfl-white-muted: rgba(255, 255, 255, 0.85);
+            --kfl-card-bg: rgba(255, 255, 255, 0.06);
+            --kfl-card-border: rgba(77, 232, 176, 0.22);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--kfl-green-deep);
+            background-image:
+                radial-gradient(ellipse at 15% 100%, rgba(77, 232, 176, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 0%, rgba(77, 232, 176, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 1px 1px, rgba(77, 232, 176, 0.10) 1px, transparent 0);
+            background-size: 100% 100%, 100% 100%, 28px 28px;
+            background-repeat: no-repeat, no-repeat, repeat;
+            background-attachment: fixed;
+            color: var(--kfl-white);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        /* ---- Header ---- */
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--kfl-green-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header-sub {
+            font-size: 0.9rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .header-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--kfl-green-accent);
+            border-radius: 2px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* ---- Intro ---- */
+
+        .intro {
+            font-size: 0.85rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ---- Tool Cards ---- */
+
+        .tool-card {
+            background: var(--kfl-card-bg);
+            border: 1px solid var(--kfl-card-border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(77, 232, 176, 0.08);
+            border-radius: 12px;
+        }
+
+        .tool-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .tool-type {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--kfl-green-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0.1rem;
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.55;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-section {
+            margin-bottom: 0.6rem;
+        }
+
+        .tool-section-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--kfl-green-accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .tool-section p {
+            font-size: 0.8rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+        }
+
+        .tool-uses {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-uses li {
+            font-size: 0.8rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+            padding-left: 1.2em;
+            position: relative;
+            margin-bottom: 0.2rem;
+        }
+
+        .tool-uses li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--kfl-green-accent);
+            font-weight: 700;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--kfl-green-accent);
+            text-decoration: none;
+            margin-top: 0.75rem;
+            padding: 0.4em 0.9em;
+            border: 1px solid rgba(77, 232, 176, 0.3);
+            border-radius: 8px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tool-link:hover {
+            background: rgba(77, 232, 176, 0.1);
+            border-color: var(--kfl-green-accent);
+        }
+
+        .tool-link-arrow {
+            font-size: 0.9em;
+        }
+
+        /* ---- Referral Note ---- */
+
+        .referral-note {
+            background: rgba(77, 232, 176, 0.06);
+            border: 1px solid rgba(77, 232, 176, 0.2);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.5;
+        }
+
+        .referral-note strong {
+            color: var(--kfl-green-accent);
+        }
+
+        /* ---- Sub-tools (Claude Projects, Cowork) ---- */
+
+        .subtool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin: 0.75rem 0 0.5rem;
+        }
+
+        .subtool {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(77, 232, 176, 0.12);
+            border-radius: 10px;
+            padding: 0.65rem 0.75rem;
+        }
+
+        .subtool h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--kfl-white);
+            margin-bottom: 0.2rem;
+        }
+
+        .subtool p {
+            font-size: 0.7rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.4;
+        }
+
+        /* ---- Combo Card (Cursor + GitHub) ---- */
+
+        .combo-label {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.5rem;
+        }
+
+        .combo-plus {
+            color: var(--kfl-green-accent);
+            font-weight: 700;
+        }
+
+        /* ---- Pipeline Section ---- */
+
+        .pipeline-section {
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .pipeline-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pipeline-section p {
+            font-size: 0.85rem;
+            color: var(--kfl-white-muted);
+            line-height: 1.55;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            align-items: center;
+            margin-top: 1.25rem;
+        }
+
+        .pipeline-node {
+            background: var(--kfl-card-bg);
+            border: 1px solid var(--kfl-card-border);
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .pipeline-node-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--kfl-white);
+        }
+
+        .pipeline-node-tool {
+            font-size: 0.7rem;
+            color: var(--kfl-green-accent);
+            margin-top: 0.15rem;
+        }
+
+        .pipeline-arrow {
+            font-size: 1.2rem;
+            color: var(--kfl-green-accent);
+            padding: 0.2rem 0;
+        }
+
+        .pipeline-node-highlight {
+            background: rgba(77, 232, 176, 0.08);
+            border-color: var(--kfl-green-accent);
+        }
+
+        /* ---- Footer ---- */
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(77, 232, 176, 0.15);
+        }
+
+        .footer-brand {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-sub {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.5;
+        }
+
+        .footer-event {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.25);
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <p class="header-label">KFL Consulting — Tool Stack</p>
+            <h1>The Tools We Use<br>Every Day</h1>
+            <p class="header-sub">Our daily toolkit for building AI-powered marketplace pipelines — and how you can use them too.</p>
+            <div class="header-divider"></div>
+        </header>
+
+        <p class="intro">
+            These are the tools that power our workflows — from AI copywriting and automation to data management and deployment. No fluff, just what we actually use and why.
+        </p>
+
+        <!-- ======== TOOL 1: Claude ======== -->
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">🧠</div>
+                <div>
+                    <div class="tool-name">Claude</div>
+                    <div class="tool-type">AI / Large Language Model</div>
+                </div>
+            </div>
+            <p class="tool-desc">
+                Von Anthropic — unserer Meinung nach das stärkste LLM für Copywriting, Coding und komplexes Reasoning. Das aktuelle Top-Modell (Opus 4) liefert Ergebnisse, die nah an menschlicher Qualität sind, oft besser strukturiert und konsistenter.
+            </p>
+            <div class="tool-section">
+                <p class="tool-section-label">Wofür wir es nutzen</p>
+                <ul class="tool-uses">
+                    <li>SEO-Copywriting: Titles, Bullets, Descriptions, Backend Keywords</li>
+                    <li>Brainstorming, Ideation, Content-Strukturierung</li>
+                    <li>Coding & technische Problemlösung</li>
+                    <li>Research, Analyse, Zusammenfassungen</li>
+                </ul>
+            </div>
+
+            <div class="subtool-grid">
+                <div class="subtool">
+                    <h4>Claude Projects</h4>
+                    <p>Persistente Ordner mit Kontext — Brand Voice, Guidelines, Produktdaten einmal hinterlegen, immer abrufbar. Kein wiederholtes Briefing.</p>
+                </div>
+                <div class="subtool">
+                    <h4>Claude Cowork</h4>
+                    <p>AI-Agent, der autonom in deinen Dateien arbeitet: lesen, erstellen, organisieren, Batch-Operationen — ohne Code.</p>
+                </div>
+            </div>
+
+            <div class="tool-section" style="margin-top: 0.5rem;">
+                <p class="tool-section-label">Warum es wertvoll ist</p>
+                <p>AI lebt von Kontext. Mit Projects und Cowork kannst du einmal die richtige Wissensbasis aufbauen und dann immer wieder darauf zugreifen — das macht den Unterschied zwischen generischem Output und echtem Mehrwert.</p>
+            </div>
+
+            <a href="https://claude.ai" target="_blank" class="tool-link">claude.ai <span class="tool-link-arrow">↗</span></a>
+        </div>
+
+        <!-- ======== TOOL 2: Wispr Flow ======== -->
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">🎙️</div>
+                <div>
+                    <div class="tool-name">Wispr Flow</div>
+                    <div class="tool-type">Voice-to-Text / Dictation</div>
+                </div>
+            </div>
+            <p class="tool-desc">
+                Voice-to-Text Tool, das per Shortcut in jedes Programm integriert werden kann — Claude, Cursor, Browser, Slack, überall. Kommt hervorragend mit Denglisch, Gedankenfetzen und natürlicher Sprache zurecht.
+            </p>
+            <div class="tool-section">
+                <p class="tool-section-label">Wofür wir es nutzen</p>
+                <ul class="tool-uses">
+                    <li>Schneller Kontext-Input für AI-Tools (reden statt tippen)</li>
+                    <li>Briefings, Notizen und Dokumentation per Sprache</li>
+                    <li>Ideation und Brainstorming ohne Schreibblockade</li>
+                </ul>
+            </div>
+            <div class="tool-section">
+                <p class="tool-section-label">Warum es wertvoll ist</p>
+                <p>AI wird besser, je mehr Kontext du gibst. Die Realität: Schreiben ist langsam und Menschen sind faul. Per Sprache lieferst du 5× mehr Input in der gleichen Zeit — und genau das macht den Output besser. Ein unterschätzter Multiplier.</p>
+            </div>
+
+            <a href="https://wispr.flow" target="_blank" class="tool-link">wispr.flow <span class="tool-link-arrow">↗</span></a>
+
+            <div class="referral-note">
+                <strong>In eigener Sache:</strong> Wenn ihr Wispr Flow ausprobieren wollt, nutzt gerne meinen Code <strong>[DEIN-CODE]</strong> — ich bekomme einen Gratis-Monat, würde mich freuen! 🙏
+            </div>
+        </div>
+
+        <!-- ======== TOOL 3: Make.com ======== -->
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">⚡</div>
+                <div>
+                    <div class="tool-name">Make.com</div>
+                    <div class="tool-type">Workflow-Automatisierung</div>
+                </div>
+            </div>
+            <p class="tool-desc">
+                No-/Low-Code-Plattform, die API-Calls in eine visuelle Oberfläche übersetzt. Im Prinzip ein Translator: die meisten Programme haben APIs, aber normalerweise bräuchte man Scripts und technisches Know-how. Make vereinfacht das mit vorgefertigten Modulen, die man per Drag & Drop verknüpft.
+            </p>
+            <div class="tool-section">
+                <p class="tool-section-label">Wofür wir es nutzen</p>
+                <ul class="tool-uses">
+                    <li>Automatisierte Rechnungserstellung</li>
+                    <li>Lead Enrichment & CRM-Workflows</li>
+                    <li>AI-integrierte Pipelines (LLM-Module direkt in Workflows)</li>
+                    <li>Daten zwischen Tools synchronisieren (Airtable ↔ GitHub ↔ Channable)</li>
+                </ul>
+            </div>
+            <div class="tool-section">
+                <p class="tool-section-label">Warum es wertvoll ist</p>
+                <p>Make ist der Klebstoff zwischen allen Tools. Statt Sachen manuell hin und her zu kopieren, baust du einmal einen Workflow — und er läuft. Besonders stark mit den integrierten LLM-Modulen: damit werden Workflows nicht nur automatisch, sondern auch intelligent.</p>
+            </div>
+            <div class="tool-section">
+                <p class="tool-section-label">Alternative</p>
+                <p>n8n — Open-Source, self-hosted möglich. In manchen Bereichen flexibler, in anderen weniger polished. Grundsätzlich ein gleichwertiges Tool.</p>
+            </div>
+
+            <a href="https://www.make.com" target="_blank" class="tool-link">make.com <span class="tool-link-arrow">↗</span></a>
+        </div>
+
+        <!-- ======== TOOL 4: Airtable ======== -->
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">📦</div>
+                <div>
+                    <div class="tool-name">Airtable</div>
+                    <div class="tool-type">Datenbank / Agentur-Betriebssystem</div>
+                </div>
+            </div>
+            <p class="tool-desc">
+                Eine Datenbank, die sich anfühlt wie ein Spreadsheet — intuitiv, aber mit echten Datenbank-Kapazitäten. Relationen, Ansichten, Automationen, Interfaces, Formulare, API-Zugang. Wir nutzen Airtable als zentrales Betriebssystem für die gesamte Agentur.
+            </p>
+            <div class="tool-section">
+                <p class="tool-section-label">Wofür wir es nutzen</p>
+                <ul class="tool-uses">
+                    <li>Zentrale Datenbasis: Produktdaten, Keywords, Kunden-Kontext</li>
+                    <li>Projektmanagement, To-Dos, Timelines</li>
+                    <li>Sales-Workflows inkl. automatisierter Vertragserstellung</li>
+                    <li>Interfaces für Kunden-Zusammenarbeit</li>
+                </ul>
+            </div>
+            <div class="tool-section">
+                <p class="tool-section-label">Warum es wertvoll ist</p>
+                <p>In einer AI-Welt wird zentral gesammelter, strukturierter Kontext zum wichtigsten Asset. Airtable ist der Ort, an dem alles zusammenläuft — Produktdaten, Workflows, Kundenwissen. Es ist die Single Source of Truth, aus der AI-Tools ihren Kontext ziehen. Und du brauchst kein Datenbank-Studium dafür.</p>
+            </div>
+
+            <a href="https://airtable.com" target="_blank" class="tool-link">airtable.com <span class="tool-link-arrow">↗</span></a>
+        </div>
+
+        <!-- ======== TOOL 5: Cursor + GitHub ======== -->
+
+        <div class="tool-card">
+            <div class="tool-header">
+                <div class="tool-icon">💻</div>
+                <div>
+                    <div class="tool-name">Cursor + GitHub</div>
+                    <div class="tool-type">AI-Coding & Projekt-Infrastruktur</div>
+                </div>
+            </div>
+            <p class="tool-desc">
+                Cursor ist ein AI-Code-Editor — wie Claude Projects auf Steroiden. Es arbeitet auf einer Ordner- und Repository-Struktur und sucht sich selbstständig den Kontext, den es braucht. Ursprünglich ein Coding-Tool, aber genauso stark für komplexe Nicht-Code-Projekte mit viel Kontext.
+            </p>
+            <div class="subtool-grid" style="margin-top: 0.5rem;">
+                <div class="subtool">
+                    <h4>Cursor</h4>
+                    <p>AI-Editor, der in großen Projekten den richtigen Kontext selbst findet. Stark für Websites, Automationen, Daten-Pipelines — alles was Code berührt.</p>
+                </div>
+                <div class="subtool">
+                    <h4>GitHub</h4>
+                    <p>Cloud-Infrastruktur & Versionskontrolle. Ermöglicht paralleles Arbeiten im Team, automatisiertes Pushen von Kontext via API (z.B. über Make), und alles ist versioniert.</p>
+                </div>
+            </div>
+            <div class="tool-section" style="margin-top: 0.75rem;">
+                <p class="tool-section-label">Wofür wir es nutzen</p>
+                <ul class="tool-uses">
+                    <li>Websites, Landing Pages, Präsentationen (wie diese hier)</li>
+                    <li>Komplexe AI-Projekte mit großen Kontext-Mengen</li>
+                    <li>Automatisierte Pipelines bauen und deployen</li>
+                    <li>Team-Kollaboration über GitHub Repositories</li>
+                </ul>
+            </div>
+            <div class="tool-section">
+                <p class="tool-section-label">Warum es wertvoll ist</p>
+                <p>Wenn Claude Projects der Einstieg ist, ist Cursor + GitHub das Level-Up. Mehr Kontext, mehr Kontrolle, mehr Möglichkeiten. Und mit GitHub als Cloud-Layer wird alles kollaborativ und automatisierbar — Dateien und Kontext können z.B. über Make direkt ins Repository gepusht werden.</p>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <a href="https://cursor.com" target="_blank" class="tool-link">cursor.com <span class="tool-link-arrow">↗</span></a>
+                <a href="https://github.com" target="_blank" class="tool-link">github.com <span class="tool-link-arrow">↗</span></a>
+            </div>
+        </div>
+
+        <!-- ======== Pipeline Overview ======== -->
+
+        <div class="pipeline-section">
+            <h2>How It All Connects</h2>
+            <p>Die Tools sind stark alleine — aber der echte Hebel entsteht, wenn sie als Pipeline zusammenspielen.</p>
+
+            <div class="pipeline-flow">
+                <div class="pipeline-node">
+                    <div class="pipeline-node-name">🎙️ Input sammeln</div>
+                    <div class="pipeline-node-tool">Wispr Flow → Sprache wird zu strukturiertem Text</div>
+                </div>
+                <div class="pipeline-arrow">↓</div>
+                <div class="pipeline-node">
+                    <div class="pipeline-node-name">📦 Kontext strukturieren</div>
+                    <div class="pipeline-node-tool">Airtable → Single Source of Truth</div>
+                </div>
+                <div class="pipeline-arrow">↓</div>
+                <div class="pipeline-node">
+                    <div class="pipeline-node-name">🧠 AI generiert</div>
+                    <div class="pipeline-node-tool">Claude / Cursor → Texte, Code, Analysen</div>
+                </div>
+                <div class="pipeline-arrow">↓</div>
+                <div class="pipeline-node">
+                    <div class="pipeline-node-name">⚡ Automatisiert verknüpfen</div>
+                    <div class="pipeline-node-tool">Make.com → Workflows zwischen allen Tools</div>
+                </div>
+                <div class="pipeline-arrow">↓</div>
+                <div class="pipeline-node pipeline-node-highlight">
+                    <div class="pipeline-node-name">🚀 Deployen</div>
+                    <div class="pipeline-node-tool">Channable → Live auf allen Marktplätzen</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======== Footer ======== -->
+
+        <footer class="footer">
+            <p class="footer-brand">KFL Consulting</p>
+            <p class="footer-sub">AI-Powered Marketplace Growth</p>
+            <p class="footer-event">Channable Use Case Awards 2026</p>
+        </footer>
+
+    </div>
+</body>
+</html>
