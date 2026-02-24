@@ -1391,6 +1391,19 @@
     margin-top: 0.4em;
 }
 
+/* ---- Fulfillment Trap ---- */
+
+.fulfillment-warning {
+    font-size: 0.82em !important;
+    text-align: center;
+    color: var(--kfl-white) !important;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 0.6em;
+    margin-bottom: 1em;
+    max-width: 700px;
+}
+
 /* ---- Channable Summary ---- */
 
 .channable-summary {
