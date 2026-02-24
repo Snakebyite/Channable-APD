@@ -1404,6 +1404,42 @@
     max-width: 700px;
 }
 
+/* ---- QR Code Closer Slide ---- */
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.qr-subtitle {
+    font-size: 0.72em !important;
+    color: var(--kfl-white-muted) !important;
+    max-width: 500px;
+    margin-bottom: 1.2em;
+    line-height: 1.4;
+}
+
+.qr-code {
+    width: 220px;
+    height: 220px;
+    border-radius: 12px;
+    border: 3px solid var(--kfl-green-accent);
+    box-shadow: 0 0 40px rgba(77, 232, 176, 0.15);
+}
+
+.qr-hint {
+    font-size: 0.55em !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    margin-top: 0.8em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
 /* ---- Channable Summary ---- */
 
 .channable-summary {
