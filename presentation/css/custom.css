@@ -1360,6 +1360,37 @@
     max-width: 600px;
 }
 
+/* ---- Hurdle Slide ---- */
+
+.hurdle-intro {
+    font-size: 0.72em !important;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-style: italic;
+    max-width: 700px;
+    margin-bottom: 1.2em;
+}
+
+.hurdle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-top: 0.2em;
+    margin-bottom: 1.4em;
+    width: 100%;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hurdle-realization {
+    font-size: 0.88em !important;
+    text-align: center;
+    color: var(--kfl-white) !important;
+    line-height: 1.5;
+    margin-top: 0.4em;
+}
+
 /* ---- Channable Summary ---- */
 
 .channable-summary {
